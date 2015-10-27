@@ -68,6 +68,15 @@ class AcervoController extends Controller
             $acervo->setAlteracao(new \DateTime('now'));
             $acervo->setCadastro(new \DateTime('now'));
 
+            $buscarTitulo = $repository->getRepository(Acervo::class);
+
+            $arrayAcervo = $buscarTitulo->findBy([
+                'titulo' => $acervo->getTitulo()
+            ]);
+
+            if(!empty($arrayAcervo))
+                return $this->render('@biblioteca/Acervo/error.html.twig');
+
             $repository->persist($acervo);
             $repository->flush();
 
@@ -77,6 +86,21 @@ class AcervoController extends Controller
         return $this->render('@biblioteca/Acervo/add.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    public function FindOneAction($id){
+
+        $repository = $this->getDoctrine()->getEntityManager();
+        $acervo = $repository->getRepository(Acervo::class)->findOneBy(['id' => $id]);
+
+        $form = $this->createFormBuilder($acervo)
+            ->add('id', 'text')
+            ->add('titulo', 'text')
+            ->add('autor', 'text')
+            ->add('save', 'submit', array('label' => 'Create Task'))
+            ->getForm();
+
+        return $this->render('@biblioteca/Acervo/add.html.twig', array('form' => $form->createView()));
     }
 
     public function removeAction()

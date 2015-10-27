@@ -23,4 +23,16 @@ class AcervoRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    public function Inativar($id){
+
+        $repository = $this->_em->getRepository(Acervo::class);
+        $acervo = $repository->findOneBy($id);
+        
+        $acervo->getId();
+        $acervo->setAtivo(0);
+
+        $this->_em->persist($acervo);
+        $this->_em->flush();
+    }
+
 }

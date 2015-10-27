@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Cadastro{% endblock %}
+{% block title %}bibliotecaBundle:Acervo:add{% endblock %}
 
 {% block body %}
 
@@ -8,8 +8,6 @@
     <a href="{{ path('showAtivos') }}">Ativos</a>
     <a href="{{ path('show') }}">Mostrar</a>
 
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+    <h1>Titulo já existe</h1>
 
 {% endblock %}
