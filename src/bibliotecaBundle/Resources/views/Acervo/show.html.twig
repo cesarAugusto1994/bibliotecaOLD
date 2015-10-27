@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}bibliotecaBundle:Acervo:show{% endblock %}
+
+{% block body %}
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Ativo</th>
+            <th>Alteracao</th>
+            <th>Cadastro</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for acervo in acervos %}
+            <tr>
+                <td>{{ acervo.id }}</td>
+                <td>{{ acervo.titulo }}</td>
+                <td>{{ acervo.autor }}</td>
+                <td>{{ acervo.ativo }}</td>
+                <td>{{ acervo.alteracao|date('d/m/Y H:i:s') }}</td>
+                <td>{{ acervo.cadastro|date('d/m/Y H:i:s') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

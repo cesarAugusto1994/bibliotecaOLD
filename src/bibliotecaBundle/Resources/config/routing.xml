@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes xmlns="http://symfony.com/schema/routing" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
+  <route id="biblioteca_homepage" path="/hello/{name}">
+    <default key="_controller">bibliotecaBundle:Default:index</default>
+  </route>
+  <route id="show" path="/show">
+    <default key="_controller">bibliotecaBundle:Acervo:show</default>
+  </route>
+  <route id="showAtivos" path="/showAtivos">
+    <default key="_controller">bibliotecaBundle:Acervo:showAtivos</default>
+  </route>
+  <route id="new" path="/new">
+    <default key="_controller">bibliotecaBundle:Acervo:new</default>
+  </route>
+  <route id="add" path="/add">
+    <default key="_controller">bibliotecaBundle:Acervo:add</default>
+  </route>
+  <route id="remove" path="/remove">
+    <default key="_controller">bibliotecaBundle:Acervo:remove</default>
+  </route>
+</routes>

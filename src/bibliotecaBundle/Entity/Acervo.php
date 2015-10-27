@@ -1,0 +1,174 @@
+<?php
+
+namespace bibliotecaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Acervo
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="bibliotecaBundle\Entity\AcervoRepository")
+ */
+class Acervo
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="string", length=255)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autor", type="string", length=255)
+     */
+    private $autor;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ativo", type="smallint", length=1, options={"default" = 1})
+     */
+    private $ativo;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="cadastro", type="datetime")
+     */
+    private $cadastro;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="alteracao", type="datetime")
+     */
+    private $alteracao;
+
+    /**
+     * @return \DateTime
+     */
+    public function getAlteracao()
+    {
+        return $this->alteracao;
+    }
+
+    /**
+     * @param \DateTime $alteracao
+     */
+    public function setAlteracao($alteracao)
+    {
+        $this->alteracao = $alteracao;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAtivo()
+    {
+        return $this->ativo;
+    }
+
+    /**
+     * @param int $ativo
+     */
+    public function setAtivo($ativo)
+    {
+        $this->ativo = $ativo;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titulo
+     *
+     * @param string $titulo
+     *
+     * @return Acervo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    /**
+     * Get titulo
+     *
+     * @return string
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * Set autor
+     *
+     * @param string $autor
+     *
+     * @return Acervo
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return string
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    /**
+     * Set cadastro
+     *
+     * @param \DateTime $cadastro
+     *
+     * @return Acervo
+     */
+    public function setCadastro($cadastro)
+    {
+        $this->cadastro = $cadastro;
+
+        return $this;
+    }
+
+    /**
+     * Get cadastro
+     *
+     * @return \DateTime
+     */
+    public function getCadastro()
+    {
+        return $this->cadastro;
+    }
+}
+
