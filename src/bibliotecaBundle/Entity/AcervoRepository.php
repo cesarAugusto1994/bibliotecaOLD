@@ -1,6 +1,8 @@
 <?php
 
 namespace bibliotecaBundle\Entity;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * AcervoRepository
@@ -26,13 +28,44 @@ class AcervoRepository extends \Doctrine\ORM\EntityRepository
     public function Inativar($id){
 
         $repository = $this->_em->getRepository(Acervo::class);
-        $acervo = $repository->findOneBy($id);
-        
+        $acervo = $repository->findOneBy(['id' => $id]);
+
         $acervo->getId();
-        $acervo->setAtivo(0);
+
+        if(0 == $acervo->getAtivo()) {
+            $acervo->setAtivo(1);
+        }else{
+            $acervo->setAtivo(0);
+        }
+
+        $acervo->setAlteracao(new \DateTime('now'));
 
         $this->_em->persist($acervo);
         $this->_em->flush();
+
+        return new Response('Acervo Inativado ' .$acervo->getTitulo());
+    }
+
+    public function Editar($id, Request $request){
+
+        $repository = $this->_em->getRepository(Acervo::class);
+        $acervo = $repository->findOneBy(['id' => $id]);
+
+        if(is_null($acervo->getId()))
+            return new Response('');
+
+        if(0 == $acervo->getAtivo()) {
+            $acervo->setAtivo(1);
+        }else{
+            $acervo->setAtivo(0);
+        }
+
+        $acervo->setAlteracao(new \DateTime('now'));
+
+        $this->_em->persist($acervo);
+        $this->_em->flush();
+
+        return new Response('Acervo Editado ' .$acervo->getTitulo());
     }
 
 }

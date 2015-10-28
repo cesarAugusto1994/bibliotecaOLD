@@ -10,6 +10,8 @@
     <table>
         <thead>
         <tr>
+            <th>Editar</th>
+            <th>Ativar/Inativar</th>
             <th>ID</th>
             <th>Titulo</th>
             <th>Autor</th>
@@ -23,6 +25,7 @@
         {% for acervo in acervos %}
             <tr>
                 <td><a href="{{ path('findOne', {'id':acervo.id}) }}"><img src="{{ asset('favicon.ico') }}"></a></td>
+                <td><a href="{{ path('inativar', {'id':acervo.id}) }}"><img src="{{ asset('favicon.ico') }}"></a></td>
                 <td>{{ acervo.id }}</td>
                 <td>{{ acervo.titulo }}</td>
                 <td>{{ acervo.autor }}</td>

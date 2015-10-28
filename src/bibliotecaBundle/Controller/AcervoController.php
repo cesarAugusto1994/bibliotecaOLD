@@ -26,6 +26,14 @@ class AcervoController extends Controller
         return $this->render('@biblioteca/Acervo/show.html.twig', array('acervos' => $repo->findByAtivo()));
     }
 
+    public function inativarAction($id){
+
+        $repo = $this->getDoctrine()->getRepository(Acervo::class);
+        $repo->Inativar($id);
+
+        return $this->render('@biblioteca/Acervo/show.html.twig', array('acervos' => $repo->findAll()));
+    }
+
     public function addAction(Request $request)
     {
         $acervo = new Acervo();
@@ -108,6 +116,23 @@ class AcervoController extends Controller
         return $this->render('bibliotecaBundle:Acervo:remove.html.twig', array(
                 // ...
             ));    }
+
+    public function updateAction($id, Acervo $acervos)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $acervo = $em->getRepository('bibliotecaBundle:Acervo')->find($id);
+
+        if (!$acervo) {
+            throw $this->createNotFoundException(
+                'Nenhum Acervo Encontrado '.$id
+            );
+        }
+
+        $acervo->setTitulo($acervos);
+        $em->flush();
+
+        return $this->redirectToRoute('show');
+    }
 
 
 }

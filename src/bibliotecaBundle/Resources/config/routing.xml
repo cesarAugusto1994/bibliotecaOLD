@@ -18,6 +18,9 @@
   <route id="findOne" path="/findOne/{id}">
     <default key="_controller">bibliotecaBundle:Acervo:FindOne</default>
   </route>
+  <route id="inativar" path="/inativar/{id}">
+    <default key="_controller">bibliotecaBundle:Acervo:inativar</default>
+  </route>
   <route id="remove" path="/remove">
     <default key="_controller">bibliotecaBundle:Acervo:remove</default>
   </route>
