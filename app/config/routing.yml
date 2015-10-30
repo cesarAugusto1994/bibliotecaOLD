@@ -1,3 +1,7 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.xml"
+    prefix:   /
+
 biblioteca:
     resource: "@bibliotecaBundle/Resources/config/routing.xml"
     prefix:   /
