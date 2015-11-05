@@ -31,7 +31,7 @@
                         <tbody>
                         {% for acervo in acervos %}
                             <tr>
-                                <td><a href="{{ path('findOne', {'id':acervo.id}) }}"><img src="{{ asset('favicon.ico') }}"></a></td>
+                                <td><a href="{{ path('edit', {'id':acervo.id}) }}"><img src="{{ asset('favicon.ico') }}"></a></td>
                                 {%  if(acervo.ativo) == 0 %}
                                 <td><a class="fa fa-star-o" id="alerta"  href="{{ path('inativar', {'id':acervo.id}) }}"></a></td>
                                 {% else %}

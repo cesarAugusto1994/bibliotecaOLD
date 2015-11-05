@@ -101,35 +101,14 @@ class AcervoController extends Controller
         $repository = $this->getDoctrine()->getEntityManager();
         $acervo = $repository->getRepository(Acervo::class)->findOneBy(['id' => $id]);
 
-        $form = $this->createFormBuilder($acervo)
-            ->add('id', 'text')
-            ->add('titulo', 'text')
-            ->add('autor', 'text')
-            ->add('save', 'submit', array('label' => 'Create Task'))
-            ->getForm();
-
-        return $this->render('@biblioteca/Acervo/add.html.twig', array('form' => $form->createView()));
+        return $this->render('@biblioteca/Acervo/edit.html.twig', array('acervo' => $acervo));
     }
 
-    public function removeAction()
+    public function updateAction(Request $request)
     {
-        return $this->render('bibliotecaBundle:Acervo:remove.html.twig', array(
-                // ...
-            ));    }
-
-    public function updateAction($id, Acervo $acervos)
-    {
+        var_dump($request->request->all());
         $em = $this->getDoctrine()->getManager();
-        $acervo = $em->getRepository('bibliotecaBundle:Acervo')->find($id);
-
-        if (!$acervo) {
-            throw $this->createNotFoundException(
-                'Nenhum Acervo Encontrado '.$id
-            );
-        }
-
-        $acervo->setTitulo($acervos);
-        $em->flush();
+        $em->getRepository('bibliotecaBundle:Acervo')->Editar($request->request->all());
 
         return $this->redirectToRoute('show');
     }

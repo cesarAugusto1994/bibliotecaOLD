@@ -31,6 +31,8 @@ class Acervo
     /**
      * @var string
      * @ORM\Column(name="autor", type="integer")
+     * @ManyToOne(targetEntity="Autor")
+     * @JoinColumn(name="id", referencedColumnName="id")
      */
     private $autor;
 

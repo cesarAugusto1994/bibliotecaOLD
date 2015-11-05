@@ -1,6 +1,7 @@
 <?php
 
 namespace bibliotecaBundle\Entity;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,29 +13,31 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class AcervoRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByAtivo(){
+    public function findByAtivo()
+    {
 
         return $this->findBy(
-        [
-            'ativo' => 1
-        ],
-        [
-            'id' => 'DESC'
-        ]
+            [
+                'ativo' => 1
+            ],
+            [
+                'id' => 'DESC'
+            ]
         );
 
     }
 
-    public function Inativar($id){
+    public function Inativar($id)
+    {
 
         $repository = $this->_em->getRepository(Acervo::class);
         $acervo = $repository->findOneBy(['id' => $id]);
 
         $acervo->getId();
 
-        if(0 == $acervo->getAtivo()) {
+        if (0 == $acervo->getAtivo()) {
             $acervo->setAtivo(1);
-        }else{
+        } else {
             $acervo->setAtivo(0);
         }
 
@@ -43,29 +46,29 @@ class AcervoRepository extends \Doctrine\ORM\EntityRepository
         $this->_em->persist($acervo);
         $this->_em->flush();
 
-        return new Response('Acervo Inativado ' .$acervo->getTitulo());
+        return new Response('Acervo Inativado ' . $acervo->getTitulo());
     }
 
-    public function Editar($id, Request $request){
-
+    public function Editar(array $array)
+    {
         $repository = $this->_em->getRepository(Acervo::class);
-        $acervo = $repository->findOneBy(['id' => $id]);
+        $acervo = $repository->findOneBy(['id' => $array['id']]);
 
-        if(is_null($acervo->getId()))
-            return new Response('');
+        $acervo->getId();
 
-        if(0 == $acervo->getAtivo()) {
-            $acervo->setAtivo(1);
-        }else{
-            $acervo->setAtivo(0);
+        if (!is_null($array['titulo'])) {
+            $acervo->setTitulo($array['titulo']);
+        }
+
+        if (!is_null($array['autor'])) {
+            $acervo->setAutor($array['autor']);
         }
 
         $acervo->setAlteracao(new \DateTime('now'));
 
-        $this->_em->persist($acervo);
+        $this->_em->merge($acervo);
         $this->_em->flush();
 
-        return new Response('Acervo Editado ' .$acervo->getTitulo());
+        return new Response('Acervo Editado ' . $acervo->getTitulo());
     }
-
 }

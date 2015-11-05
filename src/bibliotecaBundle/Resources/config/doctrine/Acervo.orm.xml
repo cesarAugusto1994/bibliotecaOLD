@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="bibliotecaBundle\Entity\Acervo" table="acervo">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="titulo" type="string" column="titulo" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="autor" type="integer" column="autor" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="cadastro" type="datetime" column="cadastro" nullable="false"/>
+    <field name="ativo" type="smallint" column="ativo" nullable="false">
+      <options>
+        <option name="unsigned"/>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <field name="alteracao" type="datetime" column="alteracao" nullable="false"/>
+  </entity>
+</doctrine-mapping>

@@ -12,6 +12,9 @@
   <route id="new" path="/new">
     <default key="_controller">bibliotecaBundle:Acervo:new</default>
   </route>
+  <route id="edit" path="/edit/{id}">
+    <default key="_controller">bibliotecaBundle:Acervo:FindOne</default>
+  </route>
   <route id="add" path="/add">
     <default key="_controller">bibliotecaBundle:Acervo:add</default>
   </route>
@@ -21,7 +24,7 @@
   <route id="inativar" path="/inativar/{id}">
     <default key="_controller">bibliotecaBundle:Acervo:inativar</default>
   </route>
-  <route id="remove" path="/remove">
-    <default key="_controller">bibliotecaBundle:Acervo:remove</default>
+  <route id="update" path="/update">
+    <default key="_controller">bibliotecaBundle:Acervo:update</default>
   </route>
 </routes>
