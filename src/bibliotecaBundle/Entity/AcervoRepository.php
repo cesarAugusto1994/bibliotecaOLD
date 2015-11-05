@@ -49,26 +49,22 @@ class AcervoRepository extends \Doctrine\ORM\EntityRepository
         return new Response('Acervo Inativado ' . $acervo->getTitulo());
     }
 
-    public function Editar(array $array)
+    public function findByTitulo(array $array)
     {
         $repository = $this->_em->getRepository(Acervo::class);
-        $acervo = $repository->findOneBy(['id' => $array['id']]);
+        $acervoItem = $repository->findOneBy(['id' => $array['id']]);
 
-        $acervo->getId();
+        $acervoItem->getId();
 
         if (!is_null($array['titulo'])) {
-            $acervo->setTitulo($array['titulo']);
+            $acervoItem->setTitulo($array['titulo']);
         }
 
-        if (!is_null($array['autor'])) {
-            $acervo->setAutor($array['autor']);
-        }
+        $acervoItem->setAlteracao(new \DateTime('now'));
 
-        $acervo->setAlteracao(new \DateTime('now'));
-
-        $this->_em->merge($acervo);
+        $this->_em->merge($acervoItem);
         $this->_em->flush();
 
-        return new Response('Acervo Editado ' . $acervo->getTitulo());
+        return new Response('Cesar');
     }
 }

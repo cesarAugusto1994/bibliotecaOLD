@@ -106,9 +106,8 @@ class AcervoController extends Controller
 
     public function updateAction(Request $request)
     {
-        var_dump($request->request->all());
         $em = $this->getDoctrine()->getManager();
-        $em->getRepository('bibliotecaBundle:Acervo')->Editar($request->request->all());
+        $em->getRepository(Acervo::class)->findByTitulo($request->request->all());
 
         return $this->redirectToRoute('show');
     }
